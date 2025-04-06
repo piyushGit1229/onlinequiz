@@ -19,7 +19,7 @@
 
     header {
       position: fixed;
-      background: #22242A;
+      background: #bd9bda;
       padding: 20px;
       width: 100%;
       z-index: 1;
@@ -36,28 +36,27 @@
     .left_area span {
       color: #19B3D3;
     }
-
     .logout_btn {
-      padding: 5px;
-      background: #19B3D3;
-      text-decoration: none;
-      float: right;
-      margin-top: -30px;
-      margin-right: 40px;
-      border-radius: 2px;
-      font-size: 15px;
-      font-weight: 600;
-      color: #fff;
-      transition: 0.5s;
+  padding: 8px 15px; /* Increased padding */
+  background: #aa53f7;
+  text-decoration: none;
+  float: right;
+  margin-top: -30px;
+  margin-right: 40px;
+  border-radius: 5px; /* Slightly more rounded */
+  font-size: 16px; /* Slightly larger text */
+  font-weight: 600;
+  color: #fff;
+  transition: 0.5s;
+}
 
-    }
 
     .logout_btn:hover {
-      background: #0B87A6;
+      background: #8c31dc;
     }
 
     .sidebar {
-      background: #2f323a;
+      background: white;
       margin-top: 70px;
       padding-top: 30px;
       position: fixed;
@@ -76,13 +75,13 @@
     }
 
     .sidebar h4 {
-      color: #ccc;
+      color: black;
       margin-top: 0;
       margin-bottom: 20px;
     }
 
     .sidebar a {
-      color: #fff;
+      color: black;
       display: block;
       width: 100%;
       line-height: 60px;
@@ -94,7 +93,7 @@
     }
 
     .sidebar a:hover {
-      background: #19B3D3;
+      background:  #8c31dc;
     }
 
     .sidebar i {
@@ -114,7 +113,7 @@
     }
 
     label #sidebar_btn:hover {
-      color: #19B3D3;
+      color: #8c31dc;
     }
 
     #check:checked~.sidebar {
@@ -175,7 +174,6 @@
   <div class="sidebar">
     <center>
 
-      <img src="{% static "image/admin.png" %}" class="profile_image" alt="">
       <h4>Admin</h4>
 
     </center>

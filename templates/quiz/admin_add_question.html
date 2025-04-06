@@ -7,48 +7,121 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
-       <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  a:link {
-        text-decoration: none;
+    body {
+      background: linear-gradient(to right, #ede9fe, #f3e8ff);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2 {
+      text-align: center;
+      color: blue;
+      font-size: 28px;
+      margin-top: 20px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      font-size: 16px;
+      color: #003366;  /* Dark Blue */
+    }
+
+    .form-control {
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding-top: 18px;  /* Increased padding on top */
+      padding-bottom: 18px;  /* Increased padding on bottom */
+      margin-bottom: 15px;
+      background-color: #ffffff;  /* White background for inputs */
+    }
+
+    .btn-primary {
+      background-color: #0056b3;  /* Darker Blue */
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      padding: 10px 20px;
+      transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #003366;  /* Even darker blue */
+    }
+
+    .container {
+      margin-top: 40px;
+      padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 20px;
       }
-    
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .form-group label {
+        font-size: 14px;
+      }
+
+      .form-control {
+        font-size: 14px;
+      }
+
+      .btn-primary {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
-<h2 style="text-align:center; color:blue;">ADD QUESTION</h2>
-<form method="POST" autocomplete="off" style="margin:100px;margin-top: 0px;">
-    {%csrf_token%}
-    <div class="form-group">
-        <label for="question">Course</label>
-      {% render_field questionForm.courseID|attr:'required:true' class="form-control"  %}
-        <br>
 
-      <label for="question">Question</label>
-      {% render_field questionForm.question|attr:'required:true' class="form-control" placeholder="What is the currency of India ?" %}
-        <br>
-      <label for="question_number">Marks</label>
-      {% render_field questionForm.marks|attr:'required:true' class="form-control" placeholder="10" %}
-        <br>
-      <label for="option1">Option 1</label>
-      {% render_field questionForm.option1|attr:'required:true' class="form-control" placeholder="Rupees" %}
-        <br>
-      <label for="option2">Option 2</label>
-      {% render_field questionForm.option2|attr:'required:true' class="form-control" placeholder="Dollar" %}
-        <br>
-      <label for="option3">Option 3</label>
-      {% render_field questionForm.option3|attr:'required:true' class="form-control" placeholder="Taka" %}
-        <br>
-      <label for="option4">Option 4</label>
-      {% render_field questionForm.option4|attr:'required:true' class="form-control" placeholder="Euro" %}
-        <br>
-      <label for="answer">Answer</label>
-      {% render_field questionForm.answer|attr:'required:true' class="form-control" %}
-    </div>
-    
+<div class="container">
+    <h2>Add Question</h2>
+    <form method="POST" autocomplete="off">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="courseID">Course</label>
+            {% render_field questionForm.courseID class="form-control" required="true" %}
+        </div>
+        
+        <div class="form-group">
+            <label for="question">Question</label>
+            {% render_field questionForm.question class="form-control" placeholder="What is the currency of India?" required="true" %}
+        </div>
+        
+        <div class="form-group">
+            <label for="marks">Marks</label>
+            {% render_field questionForm.marks class="form-control" placeholder="10" required="true" %}
+        </div>
+        
+        <div class="form-group">
+            <label for="option1">Option 1</label>
+            {% render_field questionForm.option1 class="form-control" placeholder="Rupees" required="true" %}
+        </div>
 
-    <button type="submit" class="btn btn-primary">ADD</button>
-  </form>
-<br><br><br>
+        <div class="form-group">
+            <label for="option2">Option 2</label>
+            {% render_field questionForm.option2 class="form-control" placeholder="Dollar" required="true" %}
+        </div>
+
+        <div class="form-group">
+            <label for="option3">Option 3</label>
+            {% render_field questionForm.option3 class="form-control" placeholder="Taka" required="true" %}
+        </div>
+
+        <div class="form-group">
+            <label for="option4">Option 4</label>
+            {% render_field questionForm.option4 class="form-control" placeholder="Euro" required="true" %}
+        </div>
+
+        <div class="form-group">
+            <label for="answer">Answer</label>
+            {% render_field questionForm.answer class="form-control" required="true" %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Question</button>
+    </form>
+</div>
+
 {% endblock content %}

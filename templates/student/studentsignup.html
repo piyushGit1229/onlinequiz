@@ -1,73 +1,201 @@
 <!DOCTYPE html>
-{% load widget_tweaks %}
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Signup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        form{
-           margin: 50px; 
-          
-        }
+    body {
+      display: flex;
+      height: 100vh;
+    }
 
-    </style>
-  </head>
-  <body>
-    {% include "quiz/navbar.html" %}
- 
+    .left-panel {
+      flex: 1;
+      background: linear-gradient(to bottom right, #c084fc, #818cf8);
+      color: white;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
+    .left-panel h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
 
-<br><br><br>
-<h3 style="text-align: center;color: red;">STUDENT SIGNUP</h3>
-<form method="POST" autocomplete="off" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="username">Username</label>
-        {% render_field userForm.username|attr:'required:true'  class="form-control" placeholder="username" %}
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputPassword4">Password</label>
-        {% render_field userForm.password|attr:'required:true'  class="form-control" placeholder="password" %}
-      </div>
+    .left-panel p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .right-panel {
+      flex: 1;
+      background-color: #f9f9fb;
+      padding: 60px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-box {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .form-box h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #4c1d95;
+    }
+
+    .form-box p {
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .form-box label {
+      display: block;
+      margin-bottom: -3px;
+      font-weight: 500;
+      color: #4c1d95;
+    }
+
+    .form-box input[type="text"],
+    .form-box input[type="password"],
+    .form-box input[type="email"],
+    .form-box input[type="tel"],
+    .form-box input[type="file"],
+    .form-box textarea {
+      width: 100%;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      border: 1px solid #d1d5db;
+      border-radius: 12px; /* Curvier corners */
+      font-size: 1rem;
+      background-color: #f3f4f6;
+      transition: border 0.2s ease;
+    }
+
+    .form-box input:focus,
+    .form-box textarea:focus {
+      border-color: #818cf8;
+      outline: none;
+      background-color: #fff;
+    }
+
+    .form-box input::placeholder,
+    .form-box textarea::placeholder {
+      color: #9ca3af;
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+
+    .form-box input:focus::placeholder,
+    .form-box textarea:focus::placeholder {
+      color: transparent;
+    }
+
+    .form-box textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-box input[type="checkbox"] {
+      margin-right: 8px;
+    }
+
+    .form-box button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(to right, #8b5cf6, #6366f1);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .form-box button:hover {
+      background: linear-gradient(to right, #7c3aed, #4f46e5);
+    }
+
+    .form-box small {
+      display: block;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .form-box a {
+      color: #6d28d9;
+      text-decoration: none;
+    }
+
+    .form-box a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="left-panel">
+    <h1>Welcome Teacher</h1>
+    <p>
+      Register to join our platform and begin sharing your knowledge and expertise.
+      Create your profile and get started today.
+    </p>
+  </div>
+
+  <div class="right-panel">
+    <div class="form-box">
+      <form method="POST" enctype="multipart/form-data">
+        <!-- {% csrf_token %} -->
+
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Enter your username" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required>
+
+        <label>First Name</label>
+        <input type="text" name="first_name" placeholder="Enter your first name" required>
+
+        <label>Last Name</label>
+        <input type="text" name="last_name" placeholder="Enter your last name" required>
+
+        <label>Mobile</label>
+        <input type="tel" name="mobile" placeholder="Enter your mobile number" required>
+
+        <label>Address</label>
+        <textarea name="address" placeholder="Enter your address" required></textarea>
+
+        <label>Profile Picture</label>
+        <input type="file" name="profile_picture" accept="image/*" required>
+
+        <div>
+          <input type="checkbox" required>
+          <label style="display: inline;">I agree to the <a href="#">terms and conditions</a></label>
+        </div>
+
+        <button type="submit">Sign Up</button>
+
+        <small>Already have an account? <a href="studentlogin">Sign In</a></small>
+      </form>
     </div>
+  </div>
 
-    <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="first_name">First Name</label>
-          {% render_field userForm.first_name|attr:'required:true'  class="form-control" placeholder="First Name" %}
-        </div>
-        <div class="form-group col-md-6">
-          <label for="last_name">Last Name</label>
-          {% render_field userForm.last_name|attr:'required:true'  class="form-control" placeholder="Last Name" %}
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="mobile">Mobile</label>
-          {% render_field studentForm.mobile|attr:'required:true'  class="form-control" placeholder="Mobile" %}
-        </div>
-        <div class="form-group col-md-6">
-          <label for="address">Address</label>
-          {% render_field studentForm.address|attr:'required:true'  class="form-control" placeholder="Address" %}
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-12">
-          <label for="profile_pic">Profile Picture</label>
-          {% render_field studentForm.profile_pic|attr:'required:true' class="form-control" placeholder="" %}
-        </div>
-        
-      </div>
-
-
-    <button type="submit" class="btn btn-primary">Sign Up</button>
-  </form>
-
-
-<br><br>
-{% include "quiz/footer.html" %}
-  </body>
+</body>
 </html>

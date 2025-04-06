@@ -1,37 +1,159 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #ede9fe, #f3e8ff);
+      color: #1f2937;
+    }
 
+    .feedback-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 80px;
+      padding: 2rem;
+    }
 
+    .typing-heading {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #000;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 3s steps(30, end) forwards;
+      margin-bottom: 2rem;
+    }
 
+    @keyframes typing {
+      from {
+        width: 0;
+      }
 
+      to {
+        width: 240px;
+      }
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 550px;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 1.8rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 12px;
+      background-color: #f3f4f6;
+      color: #111827;
+      outline: none;
+    }
+
+    .form-group textarea {
+      height: 160px;
+      resize: none;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      color: #6b7280;
+      pointer-events: none;
+      transition: 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group textarea:focus + label,
+    .form-group textarea:not(:placeholder-shown) + label {
+      top: -10px;
+      left: 16px;
+      background: #ffffff;
+      padding: 0 6px;
+      font-size: 0.85rem;
+      color: #7c3aed;
+    }
+
+    input[type="submit"] {
+      background-color: #8b5cf6;
+      color: white;
+      border: none;
+      padding: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 999px;
+      width: 100%;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #7c3aed;
+    }
+
+    @media (max-width: 768px) {
+      .typing-heading {
+        font-size: 2.2rem;
+      }
+
+      form {
+        padding: 2rem;
+        max-width: 90%;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
   {% include "quiz/navbar.html" %}
-  <br><br>
 
-  <center>
-    <h3 class='alert alert-success'>Send Us Your Valuable Feedback !</h3>
+  <div class="feedback-container">
+    <div class="typing-heading">Contact Us</div>
 
     <form method="POST" autocomplete="off">
-      <!-- Very Important csrf Token -->
       {% csrf_token %}
       <div class="form-group">
-        <p>
-        <h3>{{ form.as_p }}</h3>
-        </p>
-        <br>
-        <input type="submit" value="Send Message" class='btn btn-primary btn-lg'>
+        <input type="text" name="name" required placeholder=" " />
+        <label>Name</label>
       </div>
-    </form>
-  </center>
 
-  {% include "quiz/footer.html" %}
+      <div class="form-group">
+        <input type="email" name="email" required placeholder=" " />
+        <label>Email</label>
+      </div>
+
+      <div class="form-group">
+        <textarea name="message" required placeholder=" "></textarea>
+        <label>Message</label>
+      </div>
+
+      <input type="submit" value="Send Message">
+    </form>
+  </div>
+
+
 </body>
 
 </html>

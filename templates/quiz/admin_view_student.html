@@ -1,60 +1,175 @@
 {% extends 'quiz/adminbase.html' %}
 {% block content %}
-{%load static%}
+{% load static %}
 
-<head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<style>
+  body {
+    background: linear-gradient(to right, #ede9fe, #f3e8ff);
+    font-family: 'Segoe UI', sans-serif;
+  }
 
-  <style media="screen">
-    a:link {
+  .sidebar {
+    background-color: white !important; /* Sidebar color */
+
+  }
+  .sidebar a{
+    color:black;
+      display: block;
+      width: 100%;
+      line-height: 60px;
       text-decoration: none;
+      padding-left: 40px;
+      box-sizing: border-box;
+      transition: 0.5s;
+
+  }
+
+  .container {
+    margin-left: 10px;
+    margin-top: 80px;
+    padding: 20px;
+  }
+
+  .panel {
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .panel-heading {
+    background-color: #e9d5ff;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+  }
+
+  .panel-title {
+    color: #6b21a8;
+    font-size: 20px;
+    font-weight: 3px;
+    margin: 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+
+  th, td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+  }
+
+  th {
+    background-color: #ecf0f1;
+    font-weight: 600;
+    color: #2d3436;
+  }
+
+  tr {
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  tr td:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+
+  tr td:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+  img {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+  }
+
+  .btn-xs {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+
+  .btn-primary {
+    background-color: #6c5ce7;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #5e50e2;
+  }
+
+  .btn-danger {
+    background-color: #e74c3c;
+    border: none;
+  }
+
+  .btn-danger:hover {
+    background-color: #c0392b;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      margin: 20px;
     }
 
-    h6 {
-      text-align: center;
+    .panel-title {
+      font-size: 20px;
     }
 
-    .row {
-      margin: 100px;
+    th, td {
+      font-size: 14px;
+      padding: 10px;
     }
-  </style>
-</head>
-<br><br>
+  }
+</style>
+
 <div class="container">
-  <div class="panel panel-primary">
+  <div class="panel">
     <div class="panel-heading">
-      <h6 class="panel-title">Students</h6>
+      <h6 class="panel-title">📋 Student Records</h6>
     </div>
-    <table class="table table-hover" id="dev-table">
+    <table class="table table-bordered">
       <thead>
         <tr>
-
           <th>Name</th>
           <th>Profile Picture</th>
           <th>Mobile</th>
           <th>Address</th>
-         
           <th>Update</th>
           <th>Delete</th>
         </tr>
       </thead>
-      {% for t in students %}
-      <tr>
-
-        <td> {{t.get_name}}</td>
-        <td> <img src="{% static t.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
-        <td>{{t.mobile}}</td>
-        <td>{{t.address}}</td>
-        
-        <td><a class="btn btn-primary btn-xs" href="{% url 'update-student' t.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
-        <td><a class="btn btn-danger btn-xs" href="{% url 'delete-student' t.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
-      </tr>
-      {% endfor %}
+      <tbody>
+        {% for t in students %}
+        <tr>
+          <td>{{ t.get_name }}</td>
+          <td><img src="{% static t.profile_pic.url %}" alt="Profile Pic" /></td>
+          <td>{{ t.mobile }}</td>
+          <td>{{ t.address }}</td>
+          <td>
+            <a class="btn btn-primary btn-xs" href="{% url 'update-student' t.id %}">
+              <span class="glyphicon glyphicon-edit"></span>
+            </a>
+          </td>
+          <td>
+            <a class="btn btn-danger btn-xs" href="{% url 'delete-student' t.id %}">
+              <span class="glyphicon glyphicon-trash"></span>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
   </div>
 </div>
 
-<br><br><br><br><br><br>
 {% endblock content %}

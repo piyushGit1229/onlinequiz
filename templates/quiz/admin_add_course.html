@@ -7,32 +7,96 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
-       <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  a:link {
-        text-decoration: none;
+    body {
+      background: linear-gradient(to right, #ede9fe, #f3e8ff); /* Soft gradient background */
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2 {
+      text-align: center;
+      color: #6b21a8; /* Purple heading */
+      font-size: 28px;
+      margin-top: 20px;
+    }
+
+    .container {
+      margin-top: 40px;
+      padding: 20px;
+    }
+
+    .form-group label {
+      color: #6b21a8; /* Purple label */
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding-top: 15px; /* Increased padding on top */
+      padding-bottom: 15px; /* Increased padding on bottom */
+    }
+
+    .btn-primary {
+      background-color: #6c5ce7; /* Purple button */
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      padding: 10px 20px;
+      transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #5e50e2; /* Darker purple on hover */
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 20px;
       }
-    
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .form-group label {
+        font-size: 14px;
+      }
+
+      .form-control {
+        font-size: 14px;
+      }
+
+      .btn-primary {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
-<h2 style="text-align:center; color:blue;">ADD COURSE</h2>
-<form method="POST" autocomplete="off" style="margin:100px;margin-top: 0px;">
-    {%csrf_token%}
-    <div class="form-group">
-      <label for="course_name">Course Name</label>
-      {% render_field courseForm.course_name class="form-control" placeholder="Java" %}
 
-      <label for="question_number">Total Question</label>
-      {% render_field courseForm.question_number class="form-control" placeholder="10" %}
+<div class="container">
+    <h2>Add Course</h2>
+    <form method="POST" autocomplete="off">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="course_name">Course Name</label>
+            {% render_field courseForm.course_name class="form-control" placeholder="Enter Course Name" %}
+        </div>
+        <div class="form-group">
+            <label for="question_number">Total Questions</label>
+            {% render_field courseForm.question_number class="form-control" placeholder="Enter Total Questions" %}
+        </div>
+        <div class="form-group">
+            <label for="total_marks">Total Marks</label>
+            {% render_field courseForm.total_marks class="form-control" placeholder="Enter Total Marks" %}
+        </div>
 
-      <label for="total_marks">Total Marks</label>
-      {% render_field courseForm.total_marks class="form-control" placeholder="50" %}
-    </div>
-    
+        <button type="submit" class="btn btn-primary">Add Course</button>
+    </form>
+</div>
 
-    <button type="submit" class="btn btn-primary">ADD</button>
-  </form>
-<br><br><br>
 {% endblock content %}

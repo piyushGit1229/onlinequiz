@@ -1,35 +1,69 @@
 <!DOCTYPE html>
 {% load widget_tweaks %}
 
-
-  <style media="screen">
-    .jumbotron {
-      margin-top: 0px;
-      margin-bottom: 0px;
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Account Pending</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Gill Sans", sans-serif;
+      background: linear-gradient(to right, #f3e8ff, #ede9fe);
     }
 
-    .jumbotron h1 {
+    .jumbotron {
+      margin: 100px auto;
+      padding: 50px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      max-width: 700px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
 
-    .alert {
-      margin: 0px;
+    .jumbotron h1 {
+      font-size: 36px;
+      color: #6a0dad;
+      margin-bottom: 20px;
+    }
+
+    .jumbotron p {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .btn-primary {
+      background-color: #aa53f7;
+      border-color: #aa53f7;
+    }
+
+    .btn-primary:hover {
+      background-color: #8e3fdd;
+      border-color: #8e3fdd;
     }
   </style>
-  <body>
-    {% include "quiz/navbar.html" %}
+</head>
 
-      <div class="jumbotron" style="margin-top: 0px;
-        margin-bottom: 0px;">
-        <h1 class="display-4">Hello {{request.user.first_name}}</h1>
-        <p class="lead">Your Account is not approved till now <br><br>Our Team is checking your profile <br><br> Soon Your Account Will Be Approved</p>
-        <hr class="my-4">
-        <p>Check Later</p>
-        <p class="lead">
-          <a class="btn btn-primary btn-lg" href="/logout" role="button">Logout For Now</a>
-        </p>
-      </div>
+<body>
+  {% include "quiz/navbar.html" %}
 
-{% include "quiz/footer.html" %}
-  </body>
+  <div class="jumbotron">
+    <h1>Hello {{ request.user.first_name }}</h1>
+    <p class="lead">
+      Your account has not been approved yet.<br><br>
+      Our team is currently reviewing your profile.<br><br>
+      You will be approved soon.
+    </p>
+    <hr class="my-4">
+    <p>Please check back later.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="/logout" role="button">Logout For Now</a>
+    </p>
+  </div>
+
+  {% include "quiz/footer.html" %}
+</body>
 </html>

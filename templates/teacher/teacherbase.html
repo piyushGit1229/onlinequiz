@@ -4,9 +4,8 @@
 
 <head>
   <meta charset="utf-8">
- 
 
-  <style media="screen">
+  <style>
     a:link {
       text-decoration: none;
     }
@@ -14,58 +13,54 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: "Gill Sans", sans-serif;;
+      font-family: "Gill Sans", sans-serif;
+      background: linear-gradient(to right, #f3e8ff, #ede9fe);
     }
 
     header {
       position: fixed;
-      background: #22242A;
+      background: #bd9bda;
       padding: 20px;
       width: 100%;
       z-index: 1;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     .left_area h3 {
       color: #fff;
-      margin: 0px;
+      margin: 0;
       text-transform: uppercase;
       font-size: 22px;
       font-weight: 900;
     }
 
-    .left_area span {
-      color: #19B3D3;
-    }
-
     .logout_btn {
-      padding: 5px;
-      background: #19B3D3;
+      padding: 8px 16px;
+      background-color: #aa53f7;
       text-decoration: none;
       float: right;
-      margin-top: -30px;
+      margin-top: -35px;
       margin-right: 40px;
-      border-radius: 2px;
+      border-radius: 4px;
       font-size: 15px;
       font-weight: 600;
       color: #fff;
-      transition: 0.5s;
-
+      transition: 0.3s ease-in-out;
     }
 
     .logout_btn:hover {
-      background: #0B87A6;
+      background: #8b68ff;
     }
 
     .sidebar {
-      background: #2f323a;
+      background: white;
       margin-top: 70px;
       padding-top: 30px;
       position: fixed;
       left: 0;
       width: 250px;
       height: 100%;
-      transition: 0.5s;
-      transition-property: left;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
     }
 
     .sidebar .profile_image {
@@ -76,25 +71,30 @@
     }
 
     .sidebar h4 {
-      color: #ccc;
-      margin-top: 0;
-      
+      color: black;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .sidebar h6 {
+      color: #6c757d;
+      margin-bottom: 20px;
     }
 
     .sidebar a {
-      color: #fff;
+      color: #333;
       display: block;
       width: 100%;
-      line-height: 60px;
+      line-height: 50px;
       text-decoration: none;
       padding-left: 40px;
       box-sizing: border-box;
-      transition: 0.5s;
-
+      transition: 0.3s;
     }
 
     .sidebar a:hover {
-      background: #19B3D3;
+      background: #dcd1ff;
+      color: #4a00e0;
     }
 
     .sidebar i {
@@ -109,97 +109,72 @@
       left: 300px;
       font-size: 20px;
       margin: 5px 0;
-      transition: 0.5s;
-      transition-property: color;
-    }
-
-    label #sidebar_btn:hover {
-      color: #19B3D3;
-    }
-
-    #check:checked~.sidebar {
-      left: -190px;
-    }
-
-    #check:checked~.sidebar a span {
-      display: none;
-    }
-
-    #check:checked~.sidebar a {
-      font-size: 20px;
-      margin-left: 170px;
-      width: 80px;
     }
 
     .content {
       margin-left: 250px;
-      background: url(background.png) no-repeat;
-      background-position: center;
-      background-size: cover;
-      height: 100vh;
-      transition: 0.5s;
+      padding: 30px;
+      transition: 0.3s;
     }
 
-    #check:checked~.content {
-      margin-left: 60px;
-    }
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
 
-    #check {
-      display: none;
+      .content {
+        margin-left: 200px;
+        padding: 20px;
+      }
+
+      .logout_btn {
+        margin-right: 20px;
+        padding: 6px 12px;
+      }
     }
   </style>
 
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-
-
 </head>
 
 <body>
 
-  <input type="checkbox" id="check">
-  <!--header area start-->
+  <!-- Sidebar toggle checkbox (if needed) -->
+  <input type="checkbox" id="check" style="display:none;">
+
+  <!-- Header -->
   <header>
     <label for="check">
-      <i style="left: 200px;margin-top: 17px;"class="fas fa-bars" id="sidebar_btn"></i>
+      <i style="left: 200px; margin-top: 17px;" class="fas fa-bars" id="sidebar_btn"></i>
     </label>
     <div class="left_area">
-      <h3>Online Quiz</h3>
+      <h3>Teacher Panel</h3>
     </div>
     <div class="right_area">
       <a href="/logout" class="logout_btn">Logout</a>
     </div>
   </header>
-  <!--header area end-->
-  <!--sidebar start-->
+
+  <!-- Sidebar -->
   <div class="sidebar">
     <center>
-
-      <img src="{% static "image/teacher.png" %}" class="profile_image" alt="">
-      <h4>{{request.user.first_name}}</h4>
-      <h6 style="color: rgb(255, 255, 255);">( Teacher )</h6>
-
+      <img src="{% static 'image/teacher.png' %}" class="profile_image" alt="">
+      <h4>{{ request.user.first_name }}</h4>
+      <h6>( Teacher )</h6>
     </center>
 
     <a href="/teacher/teacher-dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
     <a href="/teacher/teacher-exam"><i class="fas fa-book"></i><span>Exam</span></a>
     <a href="/teacher/teacher-question"><i class="fas fa-question-circle"></i><span>Questions</span></a>
   </div>
-  <!--sidebar end-->
 
-
-  <!--content start-->
+  <!-- Main Content -->
   <div class="content">
-    <br><br><br><br><br>
+    <br><br><br><br>
     {% block content %}
-
     {% endblock content %}
-
-
-    <br><br><br>
-    {% include "quiz/footer.html" %}
   </div>
-  <!--content end-->
+
 </body>
 
 </html>

@@ -1,53 +1,98 @@
 {% extends 'quiz/adminbase.html' %}
 {% block content %}
-{%load static%}
+{% load static %}
 
 <head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-  <style media="screen">
-    a:link {
-      text-decoration: none;
+  <style>
+    body {
+      background-color: #f9f5ff;
     }
 
-    h6 {
+    .container {
+      margin-top: 50px;
+      padding: 30px;
+    }
+
+    .panel {
+      border-radius: 10px;
+      background-color: #f5e6ff; /* softest violet box background */
+      border: none;
+    }
+
+    .panel-heading {
+      background-color: #cba4ff; /* soft purple */
+      color: white;
+      padding: 15px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
       text-align: center;
+      font-size: 20px;
+      font-weight: bold;
     }
 
-    .row {
-      margin: 100px;
+    .table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background-color: #fff7ff; /* very light violet rows */
+    }
+
+    .table th, .table td {
+      text-align: center;
+      padding: 15px;
+      font-size: 16px;
+      border: none; /* No outlines */
+      color: #4c2c72;
+    }
+
+    .table th {
+      background-color: #e6ccff; /* lavender header */
+      font-weight: bold;
+    }
+
+    .table tr:hover {
+      background-color: #f0dfff; /* soft hover effect */
+    }
+
+    @media (max-width: 768px) {
+      .table th, .table td {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .container {
+        padding: 15px;
+      }
     }
   </style>
 </head>
-<br><br>
+
 <div class="container">
-  <div class="panel panel-primary">
+  <div class="panel">
     <div class="panel-heading">
-      <h6 class="panel-title">Teachers Salary</h6>
+      Teachers Salary
     </div>
-    <table class="table table-hover" id="dev-table">
+    <table class="table" id="dev-table">
       <thead>
         <tr>
-
           <th>Name</th>
-          <th>Profile Picture</th>
           <th>Mobile</th>
           <th>Salary</th>
-         
-          
         </tr>
       </thead>
-      {% for t in teachers %}
-      <tr>
-
-        <td> {{t.get_name}}</td>
-        <td> <img src="{% static t.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
-        <td>{{t.mobile}}</td>
-        <td>{{t.salary}}</td>
+      <tbody>
+        {% for t in teachers %}
+        <tr>
+          <td>{{ t.get_name }}</td>
+          <td>{{ t.mobile }}</td>
+          <td>{{ t.salary }}</td>
         </tr>
-      {% endfor %}
+        {% endfor %}
+      </tbody>
     </table>
   </div>
 </div>

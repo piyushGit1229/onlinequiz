@@ -2,114 +2,231 @@
 {% load widget_tweaks %}
 {% block content %}
 
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <style type="text/css">
-      a:link {
-        text-decoration: none;
-      }
-  
-      .order-card {
-        color: rgb(255, 255, 255);
-      }
-  
-      .bg-c-blue {
-        background: #04868f;
-      }
-  
-      .bg-c-green {
-        background:#4C51BF;
-      }
-  
-      .bg-c-yellow {
-        background: #F56565;
-      }
-  
-      .bg-c-pink {
-        background: #663a30;
-      }
-  
-  
-      .card {
-        
-        -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-        box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-        border: 1px solid black;
-        margin-bottom: 30px;
-        -webkit-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
-      }
-  
-      .card .card-block {
-        padding: 25px;
-      }
-  
-      .order-card i {
-        font-size: 26px;
-      }
-  
-      .f-left {
-        float: left;
-      }
-  
-      .f-right {
-        float: right;
-      }
-      header {
-      left: 0px;
-      right: 0px;
-    }
-    </style>
-  </head>
-<br><br>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <div class="container">
-    <div class="row">
-      
-        <div class="col-md-4 col-xl-4">
-            <div class="card bg-c-green order-card">
-              <div class="card-block">
-                <h6 class="m-b-20">Total Student </h6>
-                <h2 class="text-right"><i class="fas fa-user-graduate f-left"></i><span>{{total_student}}</span></h2>
-                
-              </div>
-            </div>
-          </div>
-  
-      <div class="col-md-4 col-xl-4">
-        <div class="card bg-c-yellow order-card">
-          <div class="card-block">
-            <h6 class="m-b-20">Total Exams</h6>
-           <h2 class="text-right"><i class="fas fa-book f-left"></i><span>{{total_course}}</span></h2>
-            
-          </div>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(to right, #f3e8ff, #ede9fe);
+      font-family: "Gill Sans", sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Gill Sans", sans-serif;
+    }
+
+    header {
+      position: fixed;
+      background: #bd9bda;
+      padding: 20px;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .left_area h3 {
+      color: #fff;
+      margin: 0px;
+      text-transform: uppercase;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .left_area span {
+      color: #8b68ff;
+    }
+
+    .logout_btn {
+      padding: 10px;
+      background-color: #aa53f7;
+      text-decoration: none;
+      float: right;
+      margin-top: -30px;
+      margin-right: 40px;
+      border-radius: 2px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      transition: 0.5s;
+    }
+
+    .logout_btn:hover {
+      background: #0B87A6;
+    }
+
+    .sidebar {
+      background: white;
+      margin-top: 70px;
+      padding-top: 30px;
+      position: fixed;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      transition: 0.5s;
+      transition-property: left;
+    }
+
+    .sidebar .profile_image {
+      width: 100px;
+      height: 100px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar h4 {
+      color: black;
+      margin-top: 0;
+    }
+
+    .sidebar a {
+      color: black;
+      display: block;
+      width: 100%;
+      line-height: 60px;
+      text-decoration: none;
+      padding-left: 40px;
+      box-sizing: border-box;
+      transition: 0.5s;
+    }
+
+    .sidebar a:hover {
+      background: rgb(109, 150, 255);
+    }
+
+    .sidebar i {
+      padding-right: 10px;
+    }
+
+    label #sidebar_btn {
+      z-index: 1;
+      color: #fff;
+      position: fixed;
+      cursor: pointer;
+      left: 300px;
+      font-size: 20px;
+      margin: 5px 0;
+      transition: 0.5s;
+      transition-property: color;
+    }
+
+    label #sidebar_btn:hover {
+      color: #19B3D3;
+    }
+
+    #check:checked~.sidebar {
+      left: -190px;
+    }
+
+    #check:checked~.sidebar a span {
+      display: none;
+    }
+
+    #check:checked~.sidebar a {
+      font-size: 20px;
+      margin-left: 170px;
+      width: 80px;
+    }
+    
+
+
+    .card {
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(76, 81, 191, 0.2);
+      transition: 0.3s;
+      margin-bottom: 30px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-block {
+      padding: 30px;
+    }
+
+    .order-card {
+      color: white;
+    }
+
+    .bg-c-green {
+      background: #4C51BF;
+    }
+
+    .bg-c-yellow {
+      background: #A78BFA;
+    }
+
+    .bg-c-pink {
+      background: #C084FC;
+    }
+
+    h6 {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .f-left {
+      float: left;
+    }
+
+    .f-right {
+      float: right;
+    }
+
+    .fa {
+      font-size: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        margin-top: 15px;
+      }
+    }
+  </style>
+</head>
+
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-xl-4">
+      <div class="card bg-c-green order-card">
+        <div class="card-block">
+          <h6 class="m-b-20">Total Students</h6>
+          <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{ total_student }}</span></h2>
         </div>
       </div>
-  
-      <div class="col-md-4 col-xl-4">
-        <div class="card bg-c-pink order-card">
-          <div class="card-block">
-            <h6 class="m-b-20">Total Questions</h6>
-            <h2 class="text-right"><i class="fas fa-question-circle f-left"></i><span>{{total_question}}</span></h2>
-            
-          </div>
+    </div>
+
+    <div class="col-md-4 col-xl-4">
+      <div class="card bg-c-yellow order-card">
+        <div class="card-block">
+          <h6 class="m-b-20">Total Exams</h6>
+          <h2 class="text-right"><i class="fa fa-book f-left"></i><span>{{ total_course }}</span></h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-xl-4">
+      <div class="card bg-c-pink order-card">
+        <div class="card-block">
+          <h6 class="m-b-20">Total Questions</h6>
+          <h2 class="text-right"><i class="fa fa-question-circle f-left"></i><span>{{ total_question }}</span></h2>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-
-<br><br><br><br><br><br><br><br><br><br>
-
-<script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-
+<br><br><br><br>
 
 {% endblock content %}

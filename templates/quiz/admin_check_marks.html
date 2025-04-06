@@ -1,27 +1,75 @@
 {% extends 'quiz/adminbase.html' %}
 {% block content %}
-{%load static%}
+{% load static %}
 
 <head>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-  <style media="screen">
-    a:link {
-      text-decoration: none;
+  <style>
+    body {
+      background: linear-gradient(to right, #f3e8ff, #ede9fe);
+      font-family: "Gill Sans", sans-serif;
     }
 
     h6 {
       text-align: center;
+      font-weight: bold;
+      color: #d8cfde;
     }
 
-    .row {
-      margin: 100px;
+    .container {
+      margin-top: 80px;
+    }
+
+    .panel {
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      border: none;
+    }
+
+    .panel-heading {
+      background-color: #c383fb !important;
+      color: white !important;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .panel-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .table-hover>tbody>tr:hover {
+      background-color: #e0d4ff;
+    }
+
+    .table th {
+      background-color: #ede7f6;
+      color: #9656e4;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .table td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .table td:nth-child(3) {
+      font-weight: bold;
+      color: #6a1b9a;
+    }
+
+    .table td:nth-child(4) {
+      font-size: 14px;
+      color: #555;
     }
   </style>
 </head>
-<br><br>
+
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
@@ -30,28 +78,25 @@
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
-
           <th>Exam Name</th>
-          
           <th>Total Marks</th>
           <th>Attempt Number</th>
           <th>Exam Date</th>
         </tr>
       </thead>
-      {% for t in results %}
-      <tr>
-
-        <td> {{t.exam}}</td>
-        <td> {{t.marks}}</td>
-        <td>Attemp {{ forloop.counter }}</td>
-        <td> {{t.date}}</td>
-        
-        
-      </tr>
-      {% endfor %}
+      <tbody>
+        {% for t in results %}
+        <tr>
+          <td>{{ t.exam }}</td>
+          <td>{{ t.marks }}</td>
+          <td>Attempt {{ forloop.counter }}</td>
+          <td>{{ t.date }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
   </div>
 </div>
 
-<br><br><br><br><br><br>
+<br><br><br>
 {% endblock content %}

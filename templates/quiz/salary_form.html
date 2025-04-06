@@ -1,32 +1,70 @@
 {% extends 'quiz/adminbase.html' %}
 {% load widget_tweaks %}
 {% block content %}
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>
-       <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  a:link {
-        text-decoration: none;
-      }
-    
+
+  <style>
+    a:link {
+      text-decoration: none;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: 60px auto;
+      background-color: #f3e8ff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(160, 87, 255, 0.2);
+    }
+
+    h3 {
+      text-align: center;
+      color: #6a1b9a;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    label {
+      color: #4a148c;
+      font-weight: 500;
+    }
+
+    .form-control {
+      border-radius: 6px;
+      border: 1px solid #c8a2ff;
+    }
+
+    .btn-primary {
+      background-color: #aa53f7;
+      border-color: #aa53f7;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #9238db;
+      border-color: #9238db;
+    }
   </style>
 </head>
-<h3 style="text-align:center">Fill Salary Of Teacher</h3>
-<form method="POST" autocomplete="off" style="margin:100px;margin-top: 0px;">
-    {%csrf_token%}
+
+<div class="form-container">
+  <h3>Fill Salary of Teacher</h3>
+  <form method="POST" autocomplete="off">
+    {% csrf_token %}
     <div class="form-group">
       <label for="salary">Salary</label>
       {% render_field teacherSalary.salary class="form-control" placeholder="5000" %}
     </div>
-    
 
-    <button type="submit" class="btn btn-primary">Approve</button>
+    <button type="submit" class="btn btn-primary btn-block">Approve</button>
   </form>
+</div>
+
 <br><br><br>
 {% endblock content %}

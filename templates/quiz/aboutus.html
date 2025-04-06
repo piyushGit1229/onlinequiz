@@ -6,42 +6,92 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <style media="screen">
-    .jumbotron {
-      margin-top: 0px;
-      margin-bottom: 0px;
+  <!-- Use Inter font (Google Font) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ede9fe, #f3e8ff);
+      color: #000;
     }
 
-    .jumbotron h1 {
+    .about-container {
+      margin-top: 120px;
       text-align: center;
+      padding: 2rem;
     }
 
-    .alert {
-      margin: 0px;
+    .typing-heading {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: black;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      margin: 0 auto 2rem;
+      animation: typing 3s steps(25, end) forwards;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 390px;
+      }
+    }
+
+  .about-text {
+  font-size: 1.4rem;
+  color: #4b5563;
+  margin-top: 2rem;
+  line-height: 3; /* You can adjust this value (e.g., 1.8 or 2.2) as needed */
+}
+
+
+    .btn-theme {
+      background-color: #8b5cf6;
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 10px;
+      margin-top: 2.5rem;
+      transition: all 0.3s ease-in-out;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-theme:hover {
+      background-color: #7c3aed;
     }
   </style>
 
-  <title></title>
+  <title>About Us</title>
 </head>
 
 <body>
 
   {% include "quiz/navbar.html" %}
-  <br><br>
-  <center>
-    <h3 class='alert alert-success' style="margin-bottom:0px;">About Us !</h3>
-  </center>
-  <div class="jumbotron" style="margin-bottom: 0px;margin-top: 0px;">
-    
-    <p class="lead">We Provide Platform For Students To practice Questions  <br> Teacher can add course/exam to System and Questions to that course.</p>
-    <hr class="my-4">
-    <p>Explore our Website.</p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg" href="/" role="button">HOME</a>
-    </p>
+
+  <div class="about-container">
+    <div class="typing-heading">About Us</div>
+
+    <div class="about-text">
+      We provide a powerful platform for students to practice questions efficiently.<br>
+      Teachers can create courses, manage exams, and assign questions easily.<br>
+      Explore and make learning more interactive and intelligent.
+    </div>
+
+    <a class="btn-theme" href="/">HOME</a>
   </div>
 
-  {% include "quiz/footer.html" %}
 </body>
 
 </html>

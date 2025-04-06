@@ -1,52 +1,212 @@
 {% extends 'student/studentbase.html' %}
 {% block content %}
-{%load static%}
+{% load static %}
 
 <head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 
-  <style media="screen">
-    a:link {
+  <style>
+    body {
+      background: linear-gradient(to right, #f3e8ff, #ede9fe);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Gill Sans", sans-serif;
+    }
+
+    header {
+      position: fixed;
+      background: #bd9bda;
+      padding: 20px;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .left_area h3 {
+      color: #fff;
+      margin: 0px;
+      text-transform: uppercase;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .left_area span {
+      color: #8b68ff;
+    }
+
+    .logout_btn {
+      padding: 10px;
+      background-color: #aa53f7;
       text-decoration: none;
+      float: right;
+      margin-top: -30px;
+      margin-right: 40px;
+      border-radius: 2px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      transition: 0.5s;
     }
 
-    h6 {
+    .logout_btn:hover {
+      background: #0B87A6;
+    }
+
+    .sidebar {
+      background: white;
+      margin-top: 70px;
+      padding-top: 30px;
+      position: fixed;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      transition: 0.5s;
+      transition-property: left;
+    }
+
+    .sidebar .profile_image {
+      width: 100px;
+      height: 100px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar h4 {
+      color: black;
+      margin-top: 0;
+    }
+
+    .sidebar a {
+      color: black;
+      display: block;
+      width: 100%;
+      line-height: 60px;
+      text-decoration: none;
+      padding-left: 40px;
+      box-sizing: border-box;
+      transition: 0.5s;
+    }
+
+    .sidebar a:hover {
+      background: rgb(109, 150, 255);
+    }
+
+    .sidebar i {
+      padding-right: 10px;
+    }
+
+    label #sidebar_btn {
+      z-index: 1;
+      color: #fff;
+      position: fixed;
+      cursor: pointer;
+      left: 300px;
+      font-size: 20px;
+      margin: 5px 0;
+      transition: 0.5s;
+      transition-property: color;
+    }
+
+    label #sidebar_btn:hover {
+      color: #19B3D3;
+    }
+
+    #check:checked~.sidebar {
+      left: -190px;
+    }
+
+    #check:checked~.sidebar a span {
+      display: none;
+    }
+
+    #check:checked~.sidebar a {
+      font-size: 20px;
+      margin-left: 170px;
+      width: 80px;
+    }
+    
+
+    .content {
+      margin-left: 170px;
+      padding: 100px 30px 30px;
+      min-height: 100vh;
+    }
+
+    .marks-panel {
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 20px rgba(76, 81, 191, 0.2);
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .panel-title {
+      font-size: 1.5rem;
+      color: #4C51BF;
+      font-weight: bold;
       text-align: center;
+      margin-bottom: 30px;
     }
 
-    .row {
-      margin: 100px;
+    .table th {
+      background-color: #ede9fe;
+      color: #4C51BF;
+      font-weight: 600;
+    }
+
+    .table td {
+      font-size: 1rem;
+      color: #4B5563;
+      vertical-align: middle;
+    }
+
+    .table-hover tbody tr:hover {
+      background-color: #f3e8ff;
+    }
+
+    .btn-view {
+      background-color: #4C51BF;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-view:hover {
+      background-color: #3b42a1;
+      color: white;
     }
   </style>
 </head>
-<br><br>
-<div class="container">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h6 class="panel-title">View Marks</h6>
-    </div>
+
+<div class="content">
+  <div class="marks-panel">
+    <h6 class="panel-title">View Marks</h6>
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
-
           <th>Exam Name</th>
-          
           <th>View Marks</th>
         </tr>
       </thead>
-      {% for t in courses %}
-      <tr>
-
-        <td> {{t.course_name}}</td>
-        
-        <td><a class="btn btn-danger btn-xs" href="{% url 'check-marks' t.id  %}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-      </tr>
-      {% endfor %}
+      <tbody>
+        {% for t in courses %}
+        <tr>
+          <td>{{ t.course_name }}</td>
+          <td>
+            <a class="btn btn-view" href="{% url 'check-marks' t.id %}">
+              <i class="fas fa-eye"></i> View
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
   </div>
 </div>
 
-<br><br><br><br><br><br>
 {% endblock content %}
